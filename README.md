@@ -1,5 +1,5 @@
 # finance-manager
-``` Simple wallet app built using Vue and Vuex. You can keep track of your spendings and incomes. It's still in alpha stage.## Project setup
+Simple wallet app built using Vue and Vuex. You can keep track of your spendings and incomes. It's still in alpha stage.## Project setup
 ```
 npm install
 ```
