@@ -3,15 +3,25 @@
     <md-card>
 
     <md-card-header>
-        <div class="md-title">List</div>        
-        <md-button @click="activeList = 'all'">All</md-button>
-        <md-button @click="activeList = 'expenses'" class="md-accent">Expenses</md-button>
-        <md-button @click="activeList = 'incomes'" class="md-primary">Incomes</md-button>                        
+
+        <div class="md-title">List</div> 
+        
+        <md-badge md-dense v-bind:md-content="expenses.length">
+        <md-button v-bind:class="{ 'md-raised': isExpense }" @click="isExpense = !isExpense">
+        <small>Show Expenses</small>
+        </md-button>
+        </md-badge>
+
+        <md-badge md-dense v-bind:md-content="incomes.length">
+        <md-button v-bind:class="{ 'md-raised': isIncome }" @click="isIncome = !isIncome">
+        <small>Show Incomes</small>
+        </md-button>
+        </md-badge>
     </md-card-header>
 
     <md-card-content>   
 
-        <md-list-item v-if="activeList === 'incomes'" v-for="item in incomes" v-bind:key="item.uuid" class="md-elevation-1 space">            
+        <md-list-item v-if="isIncome" v-for="item in incomes" v-bind:key="item.uuid" class="md-elevation-1 space">            
             <div class="md-list-item-text">                     
                 <span>{{item.selected}}</span>                                
                 <span class="bold">{{item.radio}}</span>
@@ -21,10 +31,8 @@
                     <md-icon class="md-primary">delete</md-icon>                                
                 </md-button>  
         </md-list-item>
-        
-
-                    
-        <md-list-item v-else-if="activeList === 'expenses'" v-for="item in expenses" v-bind:key="item.uuid" class="md-elevation-1 space">            
+    
+        <md-list-item v-if="isExpense" v-for="item in expenses" v-bind:key="item.uuid" class="md-elevation-1 space">            
             <div class="md-list-item-text">                     
                 <span>{{item.selected}}</span>                                
                 <span class="bold">{{item.radio}}</span>
@@ -34,20 +42,6 @@
                     <md-icon class="md-primary">delete</md-icon>                                
                 </md-button>  
         </md-list-item>
-        
-        
-                        
-        <md-list-item v-if="activeList === 'all'" v-for="item in cashflow" v-bind:key="item.uuid" class="md-elevation-1 space">            
-            <div class="md-list-item-text">                     
-                <span>{{item.selected}}</span>                                
-                <span class="bold">{{item.radio}}</span>
-            </div> 
-            <div class="center">{{item.cost}}</div>            
-                <md-button class="md-icon-button md-list-action" @click="arrDelete +=item.uuid; deleteObject()">
-                    <md-icon class="md-primary">delete</md-icon>                                
-                </md-button>  
-        </md-list-item>        
-
     </md-card-content>
     <md-card-actions>                 
         <md-button>Action</md-button>
@@ -65,7 +59,8 @@ export default {
     data: function() {
         return {
             arrDelete: [],
-            activeList: 'all'            
+            isExpense: false,
+            isIncome: false          
         }
     },
     computed: {
