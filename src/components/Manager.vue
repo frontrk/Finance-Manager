@@ -1,7 +1,6 @@
 <template>
 <div>
 
-
 <md-card>
     <md-card-header>
         <div class="md-title">Manager</div>
@@ -10,7 +9,7 @@
     <md-card-content>                          
     <md-field>
         <label>Initial Value</label>
-        <md-input v-model.number="cost" type="number"></md-input>        
+        <md-input v-model.number="cost" type="number" onfocus="this.value=''" min="0"></md-input>          
     </md-field> 
     
     <md-field>
@@ -38,6 +37,8 @@
 import { uuid } from 'vue-uuid'
 import { mapMutations } from 'vuex'
 
+const currentTime = require('moment');
+
 export default {
     name: 'Manager',
     data: function() {
@@ -49,10 +50,9 @@ export default {
                 { text: 'Groceries', value: 'groceries' }
             ],    
             selected: 0,
-            radio: 'Expense',
-            date: '',                      
+            radio: 'Expense',                                 
             newItem: {},
-            uuid: ''                  
+            uuid: ''                                
         }
     },
     methods: {

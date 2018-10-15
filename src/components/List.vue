@@ -12,14 +12,16 @@
         </md-button>
         </md-badge>
 
-        <md-badge md-dense v-bind:md-content="incomes.length">
-        <md-button v-bind:class="{ 'md-raised': isIncome }" @click="isIncome = !isIncome">
+        <md-badge md-dense v-bind:md-content="incomes.length">            
+        <md-button v-bind:class="{ 'md-raised': isIncome }" @click="isIncome = !isIncome">            
         <small>Show Incomes</small>
-        </md-button>
+        </md-button>            
         </md-badge>
     </md-card-header>
 
     <md-card-content>   
+
+        <transition-group name="list" tag="p">
 
         <md-list-item v-if="isIncome" v-for="item in incomes" v-bind:key="item.uuid" class="md-elevation-1 space">            
             <div class="md-list-item-text">                     
@@ -31,6 +33,7 @@
                     <md-icon class="md-primary">delete</md-icon>                                
                 </md-button>  
         </md-list-item>
+         
     
         <md-list-item v-if="isExpense" v-for="item in expenses" v-bind:key="item.uuid" class="md-elevation-1 space">            
             <div class="md-list-item-text">                     
@@ -42,6 +45,9 @@
                     <md-icon class="md-primary">delete</md-icon>                                
                 </md-button>  
         </md-list-item>
+
+        </transition-group>
+
     </md-card-content>
     <md-card-actions>                 
         <md-button>Action</md-button>
@@ -114,6 +120,18 @@ export default {
 
 li {
     list-style-type: none;    
+}
+
+.list-item {
+  display: inline-block;
+  margin-right: 10px;
+}
+.list-enter-active, .list-leave-active {
+  transition: all .2s;
+}
+.list-enter, .list-leave-to  {
+  opacity: 0;
+  transform: translateY(30px);
 }
 
 </style>

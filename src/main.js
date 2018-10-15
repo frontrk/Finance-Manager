@@ -12,14 +12,13 @@ import 'vue-material/dist/theme/default.css'
 // import 'vue-material/dist/theme/black-green-light.css'
 // import 'vue-material/dist/theme/default-dark.css'
 
-
-
-
+import moment from 'moment'
 import UUID from 'vue-uuid'
 
 Vue.use(UUID)
 Vue.use(VueMaterial)
 
+Vue.prototype.moment = moment
 
 Vue.config.productionTip = false
 

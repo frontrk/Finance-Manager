@@ -7,7 +7,8 @@
           <md-icon>menu</md-icon>
         </md-button>
         <md-button @click="toggleMe">toggle me</md-button>
-        <span class="md-title">Finance Manager</span>
+        <span class="md-title">Finance Manager</span>        
+        <div>{{moment().format('YYYY-MM-DD')}}</div>
       </md-app-toolbar>
 
       <md-app-drawer :md-active.sync="menuVisible">

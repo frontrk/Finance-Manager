@@ -8,8 +8,12 @@
 
     <md-card-content>                    
 
-        {{amount}}
+        <md-content>
+        
+            <div class="flex">{{amount}}</div>
 
+        </md-content>        
+        
     </md-card-content>
 
     <md-card-actions>
@@ -45,3 +49,19 @@ export default {
 }
 }
 </script>
+<style>
+
+
+.flex {
+  padding: 10px;
+  margin: 0 auto;  
+  width: 80%;
+  height: 50%;
+  background: #448aff;
+  border-radius: 50px;
+  text-align: center; 
+  font-size: 19px;   
+  color: #fff;
+}
+
+</style>
