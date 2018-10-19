@@ -39,15 +39,18 @@
 
       <md-app-content >
         <div class="md-layout md-gutter md-alignment-left">
-          <div class="md-layout-item md-medium-size-33 md-small-size-50 md-xsmall-size-100">
+          <div class="md-layout-item md-medium-size-22 md-small-size-25 md-xsmall-size-100">
             <Balance v-if="isTrue"/>
           </div>
-          <div class="md-layout-item md-medium-size-33 md-small-size-50 md-xsmall-size-100">
+          <div class="md-layout-item md-medium-size-22 md-small-size-25 md-xsmall-size-100">
             <Manager/>
           </div>
-          <div class="md-layout-item md-medium-size-33 md-small-size-50 md-xsmall-size-100">
+          <div class="md-layout-item md-medium-size-33 md-small-size-25 md-xsmall-size-100">
             <List/>
           </div>
+          <div class="md-layout-item md-medium-size-22 md-small-size-25 md-xsmall-size-100">
+            <Options/>
+          </div>          
         </div>                        
       </md-app-content>
     </md-app>
@@ -103,4 +106,9 @@ export default {
   border: none !important;   
 }
 
+.md-badge {
+    color: black !important;
+    font-weight: bold;
+    font-size: 10px !important;
+}
 </style>

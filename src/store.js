@@ -7,7 +7,7 @@ export default new Vuex.Store({
   state: {
     cashflow: [],
     count: 0,
-    isTrue: true       
+    isTrue: true          
   },
   getters: {
     expenses(state) {
@@ -24,6 +24,9 @@ export default new Vuex.Store({
     isTrue: function(state) {
       return state.isTrue
     }
+    // showTime: function(state) {
+    //   return state.time
+    // }
   },
   mutations: {
     ADD_ITEM: (state, item) => {        
@@ -40,6 +43,9 @@ export default new Vuex.Store({
         return element.uuid;
       }).indexOf(item);      
       state.cashflow.splice(removeIndex, 1);               
+    },
+    addTime: function(state, payload) {
+      state.cashflow.push(payload)
     }
   },
   actions: {

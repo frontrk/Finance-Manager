@@ -21,32 +21,33 @@
 
     <md-card-content>   
 
-        <transition-group name="list" tag="p">
-
+    <transition-group name="list" tag="p">
         <md-list-item v-if="isIncome" v-for="item in incomes" v-bind:key="item.uuid" class="md-elevation-1 space">            
             <div class="md-list-item-text">                     
                 <span>{{item.selected}}</span>                                
-                <span class="bold">{{item.radio}}</span>
-            </div> 
-            <div class="center">{{item.cost}}</div>            
+                <span class="bold">{{item.radio}}</span>  
+            </div>                                                 
+                <div class="center">{{item.cost}}</div>                                           
+                <md-tooltip md-direction="right">{{item.date}}</md-tooltip>                
                 <md-button class="md-icon-button md-list-action" @click="arrDelete +=item.uuid; deleteObject()">
                     <md-icon class="md-primary">delete</md-icon>                                
                 </md-button>  
         </md-list-item>
-         
+      
     
         <md-list-item v-if="isExpense" v-for="item in expenses" v-bind:key="item.uuid" class="md-elevation-1 space">            
             <div class="md-list-item-text">                     
                 <span>{{item.selected}}</span>                                
                 <span class="bold">{{item.radio}}</span>
-            </div> 
-            <div class="center">{{item.cost}}</div>            
+            </div>                                         
+                <div class="center">{{item.cost}}</div> 
+                <md-tooltip md-direction="right">{{item.date}}</md-tooltip>                         
                 <md-button class="md-icon-button md-list-action" @click="arrDelete +=item.uuid; deleteObject()">
                     <md-icon class="md-primary">delete</md-icon>                                
                 </md-button>  
         </md-list-item>
 
-        </transition-group>
+    </transition-group>
 
     </md-card-content>
     <md-card-actions>                 
@@ -65,8 +66,8 @@ export default {
     data: function() {
         return {
             arrDelete: [],
-            isExpense: false,
-            isIncome: false          
+            isExpense: true,
+            isIncome: true          
         }
     },
     computed: {
@@ -78,7 +79,7 @@ export default {
     ,
         ...mapGetters([        
         'expenses',
-        'incomes'
+        'incomes'        
         ])
     },
     methods: {
@@ -107,6 +108,7 @@ export default {
     padding: 5px;    
 }
 
+
 .bold {
     font-weight: bold;
 }
@@ -133,5 +135,6 @@ li {
   opacity: 0;
   transform: translateY(30px);
 }
+
 
 </style>

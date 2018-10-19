@@ -27,7 +27,7 @@
     </md-card-content>
 
     <md-card-actions>        
-        <md-button @click="generateUuid(); addItem();">Add</md-button>                
+        <md-button @click="generateTimeDate(); addItem();">Add</md-button>                
     </md-card-actions>
 </md-card>
 
@@ -45,33 +45,49 @@ export default {
         return {
             cost: 0,
             categories: [
+                { text: 'Food', value: 'food' },
+                { text: 'Transportation', value: 'transportation' },
+                { text: 'Entertainment', value: 'entertainment' },
                 { text: 'Shopping', value: 'shopping' },
-                { text: 'Health care', value: 'healthcare' },
-                { text: 'Groceries', value: 'groceries' }
+                { text: 'Communication', value: 'communication' },
+                { text: 'Gifts', value: 'gifts' }
             ],    
             selected: 0,
             radio: 'Expense',                                 
             newItem: {},
-            uuid: ''                                
+            uuid: '',
+            date: ''                            
         }
     },
     methods: {
         ...mapMutations([
-            'ADD_ITEM', 'increment'
+            'ADD_ITEM', 'increment','addTime'
         ]),
-        addItem: function() {
-            // stąd musi wychodzi OBIEKT bo bedzie puszowany do tablicy w store
-            this.newItem.cost = this.cost
-            this.newItem.selected = this.selected            
-            this.newItem.radio = this.radio                        
-            this.newItem.uuid = this.uuid                                 
-            this.ADD_ITEM(this.newItem)    
-            this.increment(this.cost)            
-            this.newItem = {}                                                    
-        },
-        generateUuid() {
-            this.uuid = uuid.v1(); 
+        addItem: function() {    
+  
+        // this.radio === 'Expense' ? this.newItem.cost*-1 : console.log('income')    
+        
+           
+        this.newItem.cost = this.cost        
+        this.newItem.selected = this.selected            
+        this.newItem.radio = this.radio                                        
+        console.log(this.newItem.date)
+        if (this.newItem.radio == 'Expense') {
+            this.newItem.cost = this.newItem.cost *-1            
         }
+        
+        this.newItem.uuid = this.uuid                                 
+        this.newItem.date = this.date
+        this.ADD_ITEM(this.newItem)    
+        this.increment(this.cost) 
+        this.newItem = {}  
+        console.log(this.newItem.cost)  //czemu sie pokazuje undefined w konsoli?                                        
+        },
+        generateTimeDate() {
+            this.uuid = uuid.v1(); 
+            this.date = this.moment().format('h:mm:ss a')
+        }
+       
     }
 }
 </script>
